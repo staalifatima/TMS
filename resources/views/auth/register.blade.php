@@ -9,7 +9,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" enctype='multipart/form-data'>
             @csrf
 
             <!-- Name -->
@@ -25,6 +25,7 @@
 
                 <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
+          
 
             <!-- Phone -->
             <div class="mt-4">
@@ -51,14 +52,22 @@
                                 type="password"
                                 name="password_confirmation" required />
             </div>
+            <!-- Role -->
             <div class="mt-4">
                 <x-input-label for="role_id" value="{{ __('Register as :') }}"/>
                 <select name="role_id" class="block mt-1 w-full border-gray-300
                 focus:border-indifo-300 focus:ring focus:ring-indigo-200
                 focus:ring-opacity-50 rounded-md shadow-sm">
-                    <option value="client">Client</option>
-                    <option value="partner">Partner</option>
+                    <option value="Client">Client</option>
+                    <option value="Partner">Partner</option>
+                    <option value="admin">Admin</option>
                 </select>
+            </div>
+               <!-- Avatar -->
+               <div class="mt-4">
+                <x-input-label for="avatar" :value="__('Avatar')" />
+
+                <x-text-input  class="block mt-1 w-full" type="file" name="avatar"  />
             </div>
 
             <div class="flex items-center justify-end mt-4">
